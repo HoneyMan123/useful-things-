@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<?php 
+    if (isset($_POST['submit']) && !empty($_POST['letters']) && !empty($_POST['numbers'])){
+        $letters = $_POST['letters'];
+        $numbers = $_POST['numbers'];
+        echo $letters;
+        echo $numbers;
+
+        $host = 'localhost';
+        $user = 'postgres';
+        $port = "5432";
+        $password = "01032007";
+        $dbname = "try";
+        
+        $dm = new
+        PDO("pgsql:host=$host;port=$port;dbname=$dbname;user=$user;password=$password");
+        
+        $query= $dm->prepare("INSERT INTO struggle(letters, numbers) VALUES (:letters, :numbers) ");
+        $query->bindValue(':letters', $letters, PDO::PARAM_INT);
+        $query->bindValue(':numbers', $numbers, PDO::PARAM_STR);
+        $query->execute();
+
+    } else if (isset($_POST['submit'])) {
+        echo "<script>alert('fill all fields '); window.location.href='index.php';</script>";
+    }
+?>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <title>Document</title>
+</head>
+<body>
+
+   <form action="index.php" method="post">
+    <input type="text" name="letters" id="letters">
+    <input type="text" name="numbers" id="numbers">
+
+    <input name="submit" type="submit">
+   </form>
+    <script type="module" src="app.js"></script>
+   
+</body>
+</html>

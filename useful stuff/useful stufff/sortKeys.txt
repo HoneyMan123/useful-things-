@@ -1,0 +1,7 @@
+  name = e.target.name 
+    let value = e.target.value
+   answer[name] = value
+let sortedKeys = Object.keys(answer).sort();
+let sortedObj = {};
+sortedKeys.forEach(function(key) {
+  sortedObj[key] = answer[key]; 

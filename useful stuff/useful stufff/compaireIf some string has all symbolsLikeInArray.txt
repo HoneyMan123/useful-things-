@@ -1,0 +1,3 @@
+if ('abcde'.every(letter => 'abcde'.includes(letter))) {
+    return true;
+  } 

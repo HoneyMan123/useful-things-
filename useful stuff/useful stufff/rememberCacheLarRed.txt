@@ -1,0 +1,4 @@
+$str = 'some string';
+$result = Cache::remember('my string', 60*60, function() use($str) {
+    return $str;
+});
